@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/screen/categories.dart';
+import 'package:meals/screen/filters.dart';
 import 'package:meals/screen/meals.dart';
 import 'package:meals/widget/main_drawer.dart';
 
@@ -48,10 +49,13 @@ class _TabsState extends State<TabsScreen> {
   }
 
   void _setScreen(String identifier) {
+    Navigator.of(context).pop();
     if (identifier == 'filters') {
-
-    } else {
-      Navigator.of(context).pop();
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => FiltersScreen(),
+        ),
+      );
     }
   }
 
@@ -73,7 +77,9 @@ class _TabsState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
-      drawer: MainDrawer(onSelectScreen: _setScreen,),
+      drawer: MainDrawer(
+        onSelectScreen: _setScreen,
+      ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
