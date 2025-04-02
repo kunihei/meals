@@ -30,15 +30,6 @@ class _TabsState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
   Map<Filter, bool> _selectedFilter = kInitialFilters;
 
-  void _showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
-
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
@@ -85,10 +76,10 @@ class _TabsState extends ConsumerState<TabsScreen> {
     var activePageTitle = 'Categories';
 
     if (_selectedPageIndex == 1) {
-      final favoriteMeals = ref.watch(favoriteMealsProvider)
+      final favoriteMeals = ref.watch(favoriteMealsProvider);
       activePageTitle = 'Your Favorites';
       activePage = MealsScreen(
-        meals: _favoriteMeals,
+        meals: favoriteMeals,
       );
     }
     return Scaffold(
