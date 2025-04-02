@@ -8,6 +8,7 @@ import 'package:meals/screen/meals.dart';
 import 'package:meals/widget/main_drawer.dart';
 import 'package:meals/providers/meals_provider.dart';
 import 'package:meals/providers/favorites_provider.dart';
+import 'package:meals/providers/filters_provider.dart';
 // import 'package:meals/data/dummy_data.dart';
 
 const kInitialFilters = {
