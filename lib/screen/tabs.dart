@@ -8,6 +8,7 @@ import 'package:meals/screen/meals.dart';
 import 'package:meals/widget/main_drawer.dart';
 import 'package:meals/providers/meals_provider.dart';
 import 'package:meals/providers/favorites_provider.dart';
+import 'package:meals/providers/filters_provider.dart';
 // import 'package:meals/data/dummy_data.dart';
 
 const kInitialFilters = {
@@ -29,15 +30,6 @@ class TabsScreen extends ConsumerStatefulWidget {
 class _TabsState extends ConsumerState<TabsScreen> {
   int _selectedPageIndex = 0;
   Map<Filter, bool> _selectedFilter = kInitialFilters;
-
-  void _showInfoMessage(String message) {
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
-  }
 
   void _selectPage(int index) {
     setState(() {
@@ -85,10 +77,10 @@ class _TabsState extends ConsumerState<TabsScreen> {
     var activePageTitle = 'Categories';
 
     if (_selectedPageIndex == 1) {
-      final favoriteMeals = ref.watch(favoriteMealsProvider)
+      final favoriteMeals = ref.watch(favoriteMealsProvider);
       activePageTitle = 'Your Favorites';
       activePage = MealsScreen(
-        meals: _favoriteMeals,
+        meals: favoriteMeals,
       );
     }
     return Scaffold(
